@@ -1,0 +1,238 @@
+import java.util.Scanner;
+public class Main {
+    static String genderFunc(char gender) {
+        if (gender == 'F')
+            return ("Female");
+        else if (gender == 'M')
+            return ("Male");
+        else
+            return ("GENDER NOT SPECIFIED!");
+    }
+
+    static String checkserviceyear(int serviceyear) {
+        if (serviceyear > 3.0)
+            return ("Parmanent employee");
+        else
+            return ("on contract");
+    }
+
+    static void next5years(int serviceYear, double base_salary,
+                           double increment) {
+        double nextSalary;
+        for (int a = 1; a <= 5; a++) {
+            serviceYear++;
+            System.out.print("Salary on " + serviceYear + "year\t");
+            nextSalary = base_salary + increment * serviceYear;
+            System.out.println(nextSalary);
+        }
+    }
+
+    static void SalaryRange(double emp_salary) {
+        if (emp_salary >= 85000)
+            System.out.println("highly paid");
+        else if (emp_salary < 85000 && emp_salary > 30000) {
+            System.out.println("Average Salary");
+        } else
+            System.out.println("Underpaid\n");
+    }
+
+    static String profitFunc(int mr, int s, int e, int m, int bills) {
+        System.out.print("\nTotal leftover of hospital = Monthly Revenue- Salaries - Equipment - Maintenance - Bills");
+        int profit = mr - s - e - m - bills;
+        if (profit >= 0)
+            return ("\nTHE SURPLUS OF HOSPITAL IS " + profit);
+        else
+            return ("\nTHE LOSS OF HOSPITAL IS " + profit);
+    }
+
+    static void Admit(String admit) {
+        if (admit.equals("Yes"))
+            System.out.println("Patient is ADMITTED");
+        else
+            System.out.println("Patient is NOT ADMITTED");
+    }
+
+    public static void main(String[] args) {
+        char rep;
+        do {
+            Scanner keyboard = new Scanner(System.in);
+            System.out.println("\n Which entity do you want to go:\n" +
+                    "1\tDOCTOR INFORMATION\n" +
+                    "2\tSTAFF\n" +
+                    "3\tPATIENT INFORMATION\n" +
+                    "4\tMEDICINE\n" +
+                    "5\tLAB\n" +
+                    "6\tFINANCE\n");
+            char module;
+            module = keyboard.next().charAt(0);
+            switch (module) {
+                case '1':
+                    System.out.println("DOCTOR INFORMATION\n");
+                    System.out.println("FIRST DOCTOR");
+                    System.out.print("DOCTOR NAME: ");
+                    String d_name1 = keyboard.next();
+                    System.out.print("DOCTOR ID : ");
+                    int d_id1 = keyboard.nextInt();
+                    System.out.print("QUALIFICATION : ");
+                    String qualification1 = keyboard.next();
+                    System.out.print("SPECIALIZATION : ");
+                    String spec1 = keyboard.next();
+                    System.out.print("GENDER(F or M): ");
+                    char d_gender1 = keyboard.next().charAt(0);
+                    String doctor1_gender = genderFunc(d_gender1);
+                    System.out.println("\nSECOND DOCTOR");
+                    System.out.print("NAME: ");
+                    String d_name2 = keyboard.next();
+                    System.out.print("DOCTOR ID : ");
+                    int d_id2 = keyboard.nextInt();
+                    System.out.print("QUALIFICATION : ");
+                    String qualification2 = keyboard.next();
+                    System.out.print("SPECIALIZATION : ");
+                    String spec2 = keyboard.next();
+                    System.out.print("GENDER(F or M): ");
+                    char d_gender2 = keyboard.next().charAt(0);
+                    String doctor2_gender = genderFunc(d_gender2);
+                    System.out.println("\nNAME\tID\tQUALIFICATION\tSPECIALIZATION\tGENDER");
+                    System.out.println(d_name1 + "\t" + d_id1 + "\t" + qualification1 + "\t" + spec1 + "\t" + doctor1_gender);
+                    System.out.println(d_name2 + "\t" + d_id2 + "\t" + qualification2 + "\t" + spec2 + "\t" + doctor2_gender);
+                    break;
+                case '2':
+                    System.out.println("\n\t\tSTAFF");
+                    System.out.print("DESIGNATION: ");
+                    String designation = keyboard.next();
+                    System.out.print("NAME: ");
+                    String emp_name = keyboard.next();
+                    System.out.print("EMPLOYEE ID: ");
+                    int emp_id = keyboard.nextInt();
+                    System.out.print("GENDER(F or M): ");
+                    char s_gender = keyboard.next().charAt(0);
+                    String staff_gender = genderFunc(s_gender);
+                    System.out.print("Enter service years completed(integer): ");
+                    int ServiceYear = keyboard.nextInt();
+                    String jobcontract = checkserviceyear(ServiceYear);
+                    System.out.println(jobcontract);
+                    System.out.println("\t\t\t\tSALARY: ");
+                    System.out.print("Enter your base salary : ");
+                    double base_salary = keyboard.nextDouble();
+                    double increment;
+                    increment = base_salary * 0.05;
+                    System.out.print("Your Current salary is ");
+                    double emp_salary = (increment * ServiceYear) + base_salary;
+                    System.out.println(emp_salary);
+                    SalaryRange(emp_salary);
+                    System.out.println("\n\t\tSALARY TABLE OF NEXT 5 YEARS");
+                    next5years(ServiceYear, base_salary, increment);
+                    System.out.println("\nNAME\tDESIGNATION\tEMPLOYEE ID\tGENDER\tCURRENT SALARY\tBASE SALARY");
+                    System.out.println(emp_name + "\t" + designation + "\t\t" + emp_id + "\t\t" + staff_gender + "\t\t" + emp_salary + "\t\t" + base_salary);
+                    break;
+                case '3': //Hizar Abdullah
+                    System.out.println("PATIENT INFORMATION");
+                    System.out.println("\nFIRST PATIENT");
+                    System.out.print("NAME: ");
+                    String p_name1 = keyboard.next();
+                    System.out.print("GENDER(F or M): ");
+                    char p_gender1 = keyboard.next().charAt(0);
+                    String pateint1_gender = genderFunc(p_gender1);
+                    System.out.print("AGE : ");
+                    int age1 = keyboard.nextInt();
+                    if (age1 >= 18) {
+                        System.out.print("Enter CNIC(without dashes): ");
+                        long cnic1 = keyboard.nextLong();
+                    }
+                    System.out.print("CONTACT NO.(without dashes): ");
+                    long contact1 = keyboard.nextLong();
+                    System.out.print("TYPE OF ILLNESS : ");
+                    String illness1 = keyboard.next();
+                    System.out.print("Admission(Yes or No): ");
+                    String admit1 = keyboard.next();
+                    Admit(admit1);
+                    System.out.println("\nSECOND PATEINT");
+                    System.out.print("NAME: ");
+                    String p_name2 = keyboard.next();
+                    System.out.print("GENDER(F or M): ");
+                    char p_gender2 = keyboard.next().charAt(0);
+                    String pateint2_gender = genderFunc(p_gender2);
+                    System.out.print("AGE : ");
+                    int age2 = keyboard.nextInt();
+                    if (age2 >= 18) {
+                        System.out.print("Enter CNIC(without dashes): ");
+                        long cnic2 = keyboard.nextLong();
+                    }
+                    System.out.print("CONTACT NO.(without dashes): ");
+                    long contact2 = keyboard.nextLong();
+                    System.out.print("TYPE OF ILLNESS : ");
+                    String illness2 = keyboard.next();
+                    System.out.print("Admission(Yes or No): ");
+                    String admit2 = keyboard.next();
+                    Admit(admit2);
+                    System.out.println("\nNAME\tGENDER\tAGE\t CONTACT NO.\tILLNESS\tADMISSION");
+
+                    System.out.println(p_name1 + "\t" + pateint1_gender + "\t" + age1 + "\t" + contact1 + "\t" +
+                            illness1 + "\t" + admit1);
+
+                    System.out.println(p_name2 + "\t" + pateint2_gender + "\t" + age2 + "\t" + contact2 + "\t" +
+                            illness2 + "\t" + admit2);
+                    break;
+                case '4':
+                    System.out.println("\t\tMEDICINE");
+                    System.out.println("First Medicine");
+                    System.out.print("Enter medicine name: ");
+                    String medicine1 = keyboard.next();
+                    System.out.print("Enter medicine company name: ");
+                    String company1 = keyboard.next();
+                    System.out.print("Date of expiry(dd/mm/yy):");
+                    String exp_date1 = keyboard.next();
+                    System.out.print("Enter medicine cost:");
+                    float med_cost1 = keyboard.nextFloat();
+                    System.out.println("\nSecond Medicine");
+                    System.out.print("Enter medicine name:");
+                    String medicine2 = keyboard.next();
+                    System.out.print("Enter medicine company name: ");
+                    String company2 = keyboard.next();
+                    System.out.print("Date of expiry(dd/mm/yy):");
+                    String exp_date2 = keyboard.next();
+                    System.out.print("Enter medicine cost:");
+                    float med_cost2 = keyboard.nextFloat();
+                    System.out.println("Existing Medicine list");
+                    System.out.println("NAME\tCOMPANY NAME\tEXPIRY_DATE\tCOST");
+                    System.out.println(medicine1 + "\t" + company1 + "\t\t" + exp_date1 + "\t" + med_cost1);
+                    System.out.println(medicine2 + "\t" + company2 + "\t\t" + exp_date2 + "\t" + med_cost2);
+                    break;
+
+                case '5':
+                    System.out.println("LAB");
+                    System.out.println("Enter Facility: ");
+                    String facility1 = keyboard.next();
+                    System.out.println("Enter test cost:");
+                    float cost1 = keyboard.nextFloat();
+                    System.out.println("Enter 2nd Facility: ");
+                    String facility2 = keyboard.next();
+                    System.out.println("Enter 2nd test cost:");
+                    float cost2 = keyboard.nextFloat();
+                    System.out.println("\nNAME\t\tCOST");
+                    System.out.println(facility1 + "\t" + cost1);
+                    System.out.println(facility2 + "\t" + cost2);
+                    break;
+                case '6': // M. Adil
+                    System.out.println("\t\tFINANCE");
+                    System.out.print("Monthly Revenue :");
+                    int MonthlyRevenue = keyboard.nextInt();//Monthly Revenue
+                    System.out.print("Salaries of staff : ");
+                    int Salaries = keyboard.nextInt();//Salaries of staff
+                    System.out.print("Epuipment : ");
+                    int Equipment = keyboard.nextInt();//Epuipment
+                    System.out.print("Mainteinence : ");
+                    int Mainteinence = keyboard.nextInt();//Mainteinence
+                    System.out.print("Bills : ");
+                    int Bills = keyboard.nextInt();//Bills
+                    profitFunc(MonthlyRevenue, Salaries, Equipment, Mainteinence, Bills);
+                    break;
+                default:
+                    System.out.println("\nWRONG ENTITY!");
+            }
+            System.out.println("\nEnter 'y' to rerun and 'n' to exit");
+            rep = keyboard.next().charAt(0);
+        }
+        while (rep == 'y');
+    }
+}
